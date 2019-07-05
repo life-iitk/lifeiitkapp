@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
-  Card,
   CardItem,
   Thumbnail,
   Text,
   Button,
   Left,
   Body,
-  Right,
-  Header
+  Right
 } from 'native-base';
-import { Modal, TouchableHighlight, View, Alert } from 'react-native';
+import { Modal } from 'react-native';
 
 const PostModal = props => {
   const post = props.post;
