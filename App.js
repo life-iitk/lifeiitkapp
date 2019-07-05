@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
+import { Container, Header } from 'native-base';
 import AppFontLoader from './components/utils/appFontLoader';
 
 class App extends Component {
