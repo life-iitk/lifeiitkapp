@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <AppFontLoader>
-        <Container>{/* <Calendar /> */}</Container>
+        <Container>{/* Add component for testing here */}</Container>
       </AppFontLoader>
     );
   }
