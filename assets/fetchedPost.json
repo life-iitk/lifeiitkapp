@@ -3,7 +3,7 @@
   "title": "Lecture on Bash and Git",
   "summary": "This lecture will cover the fundamentals of bash scripting, and will also teach you about the Git version control system.",
   "avatar": "avatar.png",
-  "date": "2019-8-15",
+  "date": "2019-07-05",
   "tags": [
     { "name": "Programming Club", "tag_id": 1, "description": "SnT Club" }
   ],
