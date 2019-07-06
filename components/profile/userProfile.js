@@ -32,7 +32,7 @@ const UserProfile = props => {
                 style={{ width: 80, height: 80 }}
                 source={{
                   uri:
-                    "https://facebook.github.io/react-native/docs/assets/favicon.png"
+                    "https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png"
                 }}
               />
             </Body>
@@ -146,7 +146,7 @@ const UserProfile = props => {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                flex: 0,
+                flex: 1,
                 flexWrap: "wrap"
               }}
             >
