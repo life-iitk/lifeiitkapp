@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
+import { Container, Root } from 'native-base';
 import {
   createDrawerNavigator,
   createStackNavigator,
@@ -47,9 +47,11 @@ class App extends Component {
   render() {
     return (
       <AppFontLoader>
-        <Container>
-          <AppContainer />
-        </Container>
+        <Root>
+          <Container>
+            <AppContainer />
+          </Container>
+        </Root>
       </AppFontLoader>
     );
   }
