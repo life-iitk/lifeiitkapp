@@ -10,11 +10,11 @@ const Strip = props => {
         onDateSelected={props.onChange}
         daySelectionAnimation={{
           type: 'background',
-          highlightColor: '#8152d1'
+          highlightColor: '#4b5cb8'
         }}
         style={{ height: 100, paddingTop: 20, paddingBottom: 10 }}
         calendarHeaderStyle={{ color: 'white' }}
-        calendarColor={'#7743CE'}
+        calendarColor={'#32408F'}
         dateNumberStyle={{ color: 'white' }}
         dateNameStyle={{ color: 'white' }}
         highlightDateNumberStyle={{ color: 'white' }}

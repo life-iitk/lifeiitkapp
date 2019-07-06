@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Spinner, Content } from 'native-base';
+import TopBar from '../components/shell/topbar';
 import FeedPost from '../components/feed/feedPost';
 
 class Feed extends Component {
@@ -24,17 +25,20 @@ class Feed extends Component {
 
   render() {
     return (
-      <Content>
-        {!this.state.evLoaded ? (
-          <Spinner color="blue" />
-        ) : (
-          <React.Fragment>
-            {this.state.events.map(event => (
-              <FeedPost post={event} key={event.event_id} />
-            ))}
-          </React.Fragment>
-        )}
-      </Content>
+      <React.Fragment>
+        <TopBar pgName="Feed" navigation={this.props.navigation} />
+        <Content>
+          {!this.state.evLoaded ? (
+            <Spinner color="blue" />
+          ) : (
+            <React.Fragment>
+              {this.state.events.map(event => (
+                <FeedPost post={event} key={event.event_id} />
+              ))}
+            </React.Fragment>
+          )}
+        </Content>
+      </React.Fragment>
     );
   }
 }
