@@ -7,10 +7,16 @@ import {
   Title,
   Text,
   Button,
-  Icon
+  Icon,
+  Container,
+  Form,
+  Item,
+  Input
 } from 'native-base';
+import LoginModal from '../login/loginModal';
 
 const TopBar = props => {
+  const [open, setOpen] = React.useState(false);
   return (
     <Header>
       <Left>
@@ -22,10 +28,14 @@ const TopBar = props => {
         <Title>{props.pgName}</Title>
       </Body>
       <Right>
-        <Button transparent>
-          <Text>{props.loggedIn ? 'Logout' : 'Login'}</Text>
+        <Button transparent onPress={() => setOpen(true)}>
+            <Text>{props.loggedIn ? 'Logout' : 'Login'}</Text>
         </Button>
-      </Right>
+        <LoginModal
+        open={open}
+        onClose={() => setOpen(false)}
+        />          
+        </Right>
     </Header>
   );
 };
