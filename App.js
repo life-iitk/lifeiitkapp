@@ -17,7 +17,7 @@ const pages = {
   Feed: { screen: Feed },
   Calendar: { screen: Calendar },
   Admin: { screen: Admin },
-  Mess: { screen: Mess},
+  Mess: { screen: Mess },
   Profile: { screen: Profile }
 };
 

@@ -56,10 +56,11 @@ const Sidebar = props => {
         
           <List
           dataArray={pages}
-          renderRow={page => (
+          renderRow={(page, index) => (
             <ListItem
               button
               noBorder
+              key={index}
               onPress={() => props.navigation.navigate(page.route)}
             >
               <Left>
