@@ -6,7 +6,10 @@ import {
   Text,
   Container,
   Content,
-  List
+  List,
+  Thumbnail,
+  Body,
+  CardItem,
 } from 'native-base';
 import { Image } from 'react-native';
 import styles from './style';
@@ -16,7 +19,6 @@ const pages = [
   { name: 'Calendar', icon: 'md-calendar', route: 'Calendar' },
   { name: 'Mess', icon: 'cutlery', type: 'FontAwesome', route: 'Mess' },
   { name: 'Map', icon: 'md-map', route: 'Map' },
-  { name: 'Profile', icon: 'md-person', route: 'Profile' },
   { name: 'Admin', icon: 'ios-settings', route: 'Admin' }
 ];
 
@@ -35,8 +37,24 @@ const Sidebar = props => {
           style={styles.drawerCover}
         />
         {/* <Image square style={styles.drawerImage} source={drawerImage} /> */}
-
-        <List
+        <CardItem button onPress={() => props.navigation.navigate("Profile")} bordered>
+          <Left>
+          <Thumbnail 
+            source={{uri: "https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png"}}
+            style={{marginRight: 10}}
+          />         
+            <Body>
+              <Text>
+                Name
+              </Text>
+              <Text note>
+                180000
+              </Text>
+            </Body>            
+        </Left>
+        </CardItem>
+        
+          <List
           dataArray={pages}
           renderRow={page => (
             <ListItem
