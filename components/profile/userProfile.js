@@ -12,15 +12,17 @@ import {
   Header,
   Icon,
   List,
-  ListItem
+  ListItem,
+  Grid,
+  Row,
+  Col
 } from "native-base";
 import moment from "moment";
 import { ScrollView } from "react-native-gesture-handler";
 
 const UserProfile = props => {
   return (
-    <Content>
-      {/* <Header /> */}
+    <Content padder>
       <ScrollView>
         <Card>
           <CardItem>
@@ -37,92 +39,101 @@ const UserProfile = props => {
             <Right />
           </CardItem>
           <CardItem>
-            <Left>
-              <Icon name="md-person" />
-              <Text>Name:</Text>
-            </Left>
-            <Body>
-              <Text>Chinmay</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="AntDesign" name="idcard" />
-              <Text>Roll Number:</Text>
-            </Left>
-            <Body>
-              <Text>180206</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="FontAwesome" name="university" />
-              <Text>Program:</Text>
-            </Left>
-            <Body>
-              <Text>B.Tech</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="MaterialCommunityIcons" name="office-building" />
-              <Text>Department:</Text>
-            </Left>
-            <Body>
-              <Text>CSE</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="Entypo" name="home" />
-              <Text>Room:</Text>
-            </Left>
-            <Body>
-              <Text>B320,Hall2</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="MaterialCommunityIcons" name="home-city-outline" />
-              <Text>Hometown:</Text>
-            </Left>
-            <Body>
-              <Text>Jaipur</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Icon type="Entypo" name="mail" />
-              <Text>Email:</Text>
-            </Left>
-            <Body>
-              <Text>chinmayg@iitk.ac.in</Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Icon type="Entypo" active name="facebook" />
-            <Text>Facebook</Text>
-            <Right>
-              <Icon type="Entypo" name="edit" />
-            </Right>
-          </CardItem>
+            <Grid>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon name="md-person" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Name</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>Tanvi</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="AntDesign" name="idcard" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Roll Number</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>180819</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="FontAwesome" name="university" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Program</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>B.Tech</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="MaterialCommunityIcons" name="office-building" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Department</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>EE</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="Entypo" name="home" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Address</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>B-404, Hall 6</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="MaterialCommunityIcons" name="home-city-outline" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Hometown</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>Bengaluru, Karnataka</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="Entypo" name="mail" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Email</Text>
+                </Left>           
+                <Content>
+                  <Text style={{padding: 5}}>tanvin@iitk.ac.in</Text>
+                </Content>                    
+              </Row>
+              <Row style = {{padding: 5}}>     
+                <Left>
+                <Icon type="Entypo" active name="facebook" style={{fontSize: 26, width: 30 }}/>
+                <Text style={{padding: 5}}>Facebook</Text>
+                </Left>
+                  <Right>
+                    <Icon type="Entypo" name="edit" />
+                  </Right>
+              </Row>
+            </Grid>
+            </CardItem>
         </Card>
         <Card>
           <CardItem header>
-            <Text>Position of Responsibilities</Text>
+            <Text>Positions of Responsibility</Text>
           </CardItem>
           <CardItem>
-            <List>
-              <ListItem>
-                <Text>Simon Mignolet</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Nathaniel Clyne</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Dejan Lovren</Text>
-              </ListItem>
-            </List>
+            <Grid>
+              <Row style={{padding: 5}}>                
+                  <Icon active type="MaterialIcons" name="stars" />                
+                  <Text style={{paddingTop: 2}}>Secretary, Programming Club</Text>                
+              </Row>
+              <Row style={{padding: 5}}>                
+                  <Icon active type="MaterialIcons" name="stars" />                
+                  <Text style={{paddingTop: 2}}>Secretary, English Literary Society</Text>                
+              </Row>
+              <Row style={{padding: 5}}>                
+                  <Icon active type="MaterialIcons" name="stars" />                
+                  <Text style={{paddingTop: 2}}>Secretary, Quiz Club</Text>                
+              </Row>
+            </Grid>
           </CardItem>
         </Card>
         <Card>
@@ -135,7 +146,7 @@ const UserProfile = props => {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                flex: 1,
+                flex: 0,
                 flexWrap: "wrap"
               }}
             >

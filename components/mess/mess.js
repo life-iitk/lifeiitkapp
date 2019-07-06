@@ -39,7 +39,7 @@ const Mess = props => {
                             marginRight: 10,
                         }}
                     >
-                    {new Array(props.numOfHalls).fill(1).map((hall, index) => (
+                    {new Array(numOfHalls).fill(1).map((hall, index) => (
                     <Picker.Item label={"Hall "+ (index + 1)} value={index + 1} key={index} />
                     ))}
                     </Picker>

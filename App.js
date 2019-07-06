@@ -10,11 +10,15 @@ import Sidebar from './components/shell/sidebar';
 import Calendar from './views/calendar';
 import Feed from './views/feed';
 import Admin from './views/admin';
+import Mess from './components/mess/mess';
+import Profile from './views/profile';
 
 const pages = {
   Feed: { screen: Feed },
   Calendar: { screen: Calendar },
-  Admin: { screen: Admin }
+  Admin: { screen: Admin },
+  Mess: { screen: Mess},
+  Profile: { screen: Profile }
 };
 
 const Drawer = createDrawerNavigator(pages, {
