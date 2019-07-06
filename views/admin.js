@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Spinner, Content } from 'native-base';
 import EventCard from '../components/admin/eventCard';
-import { ScrollView } from 'react-native-gesture-handler';
 import TopBar from '../components/shell/topbar';
 import axios from 'axios';
 
@@ -50,7 +49,7 @@ class Admin extends Component {
           {!this.state.evLoaded ? (
             <Spinner color="blue" />
           ) : (
-            <ScrollView>
+            <React.Fragment>
               {this.state.events.map(event => (
                 <EventCard
                   post={event}
@@ -58,7 +57,7 @@ class Admin extends Component {
                   key={event.event_id}
                 />
               ))}
-            </ScrollView>
+            </React.Fragment>
           )}
         </Content>
       </React.Fragment>

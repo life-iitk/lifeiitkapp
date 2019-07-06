@@ -42,7 +42,10 @@ const FilterModal = props => {
       <List>
         {tags.map((tag, index) => (
           <ListItem onPress={() => handlePress(index)}>
-            <CheckBox checked={tag.selected} />
+            <CheckBox
+              checked={tag.selected}
+              onPress={() => handlePress(index)}
+            />
             <Body>
               <Text>{tag.name}</Text>
             </Body>

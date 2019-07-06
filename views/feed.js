@@ -27,7 +27,7 @@ class Feed extends Component {
     return (
       <React.Fragment>
         <TopBar pgName="Feed" navigation={this.props.navigation} />
-        <Content>
+        <Content padder>
           {!this.state.evLoaded ? (
             <Spinner color="blue" />
           ) : (

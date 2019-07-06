@@ -1,0 +1,26 @@
+{
+  "roll": "180000",
+  "username": "samplenm",
+  "image": "https://picsum.photos/200",
+  "name": "Sample Student",
+  "program": "B.Tech",
+  "dept": "EE",
+  "hall": "Hall 2",
+  "room": "Z-100",
+  "blood_group": "B+",
+  "gender": "M",
+  "hometown": "KahinPe",
+  "fblink": "https://facebook.com/user/naonwifwenlivbsbvsbvsvwevjvsvvbiodbibibpibboino",
+  "por": { "Programming Club": "Secretary" },
+  "earlier_login": false,
+  "acads": [
+    { "course_id": 1, "name": "Mathematics - I", "code": "MTH101A" },
+    { "course_id": 2, "name": "Language and Society", "code": "ENG124A" }
+  ],
+  "owned": [
+    { "name": "Programming Club", "tag_id": 1, "description": "SnT Club" }
+  ],
+  "tags": [
+    { "name": "Programming Club", "tag_id": 1, "description": "SnT Club" }
+  ]
+}

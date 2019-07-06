@@ -114,12 +114,12 @@ class Calendar extends Component {
     return (
       <React.Fragment>
         <TopBar pgName="Calendar" navigation={this.props.navigation} />
-        <Content>
-          <Strip
-            date={this.state.selectedDate}
-            onChange={this.handleDateChange}
-            dots={this.state.dots}
-          />
+        <Strip
+          date={this.state.selectedDate}
+          onChange={this.handleDateChange}
+          dots={this.state.dots}
+        />
+        <Content padder>
           {!this.state.evLoaded ? (
             <Spinner color="#7743CE" />
           ) : (
@@ -131,7 +131,7 @@ class Calendar extends Component {
         {this.state.evLoaded && (
           <React.Fragment>
             <Fab
-              style={{ backgroundColor: '#32408F' }}
+              style={{ backgroundColor: '#d40000' }}
               onPress={() => this.setState({ fOpen: true })}
               position="bottomRight"
             >

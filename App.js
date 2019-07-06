@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
+import { Container, Root } from 'native-base';
 import {
   createDrawerNavigator,
   createStackNavigator,
@@ -17,7 +17,7 @@ const pages = {
   Feed: { screen: Feed },
   Calendar: { screen: Calendar },
   Admin: { screen: Admin },
-  Mess: { screen: Mess},
+  Mess: { screen: Mess },
   Profile: { screen: Profile }
 };
 
@@ -47,9 +47,11 @@ class App extends Component {
   render() {
     return (
       <AppFontLoader>
-        <Container>
-          <AppContainer />
-        </Container>
+        <Root>
+          <Container>
+            <AppContainer />
+          </Container>
+        </Root>
       </AppFontLoader>
     );
   }
