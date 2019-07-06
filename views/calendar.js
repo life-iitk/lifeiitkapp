@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Strip from '../components/calendar/strip';
 import FeedPost from '../components/feed/feedPost';
+import TopBar from '../components/shell/topbar';
 import moment from 'moment';
 import axios from 'axios';
 import { Spinner, Fab, Icon, Content } from 'native-base';
@@ -112,6 +113,7 @@ class Calendar extends Component {
   render() {
     return (
       <React.Fragment>
+        <TopBar pgName="Calendar" navigation={this.props.navigation} />
         <Content>
           <Strip
             date={this.state.selectedDate}
@@ -129,7 +131,7 @@ class Calendar extends Component {
         {this.state.evLoaded && (
           <React.Fragment>
             <Fab
-              style={{ backgroundColor: '#7743CE' }}
+              style={{ backgroundColor: '#32408F' }}
               onPress={() => this.setState({ fOpen: true })}
               position="bottomRight"
             >
