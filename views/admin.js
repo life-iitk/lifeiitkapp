@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Spinner, Content } from 'native-base';
+import { Spinner, Content, Fab, Icon } from 'native-base';
 import EventCard from '../components/admin/eventCard';
 import TopBar from '../components/shell/topbar';
 import axios from 'axios';
+import NewEvent from '../components/admin/newEvent';
 
 class Admin extends Component {
-  state = { events: [], evLoaded: false };
+  state = { events: [], evLoaded: false, boxOpen: false };
 
   componentDidMount = () => {
     // FETCH EVENTS HERE
@@ -25,6 +26,18 @@ class Admin extends Component {
         { withCredentials: true }
       )
       .then(res => this.setState({ events: res.data, evLoaded: true }))
+      .catch(err => console.log(err));
+  };
+
+  addEvent = data => {
+    this.setState({ boxOpen: false, evLoaded: false });
+    axios({
+      method: 'post',
+      url: 'http://localhost:8000/events/create/',
+      data: data,
+      withCredentials: true
+    })
+      .then(this.getEvents)
       .catch(err => console.log(err));
   };
 
@@ -60,6 +73,18 @@ class Admin extends Component {
             </React.Fragment>
           )}
         </Content>
+        <Fab
+          style={{ backgroundColor: '#334393' }}
+          onPress={() => this.setState({ boxOpen: true })}
+          position="bottomRight"
+        >
+          <Icon name="ios-add" />
+        </Fab>
+        <NewEvent
+          open={this.state.boxOpen}
+          onClose={() => this.setState({ boxOpen: false })}
+          add={this.addEvent}
+        />
       </React.Fragment>
     );
   }

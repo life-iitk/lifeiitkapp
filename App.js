@@ -11,7 +11,7 @@ import Sidebar from './components/shell/sidebar';
 import Calendar from './views/calendar';
 import Feed from './views/feed';
 import Admin from './views/admin';
-import Mess from './components/mess/mess';
+import Mess from './views/mess';
 import Profile from './views/profile';
 
 const pages = {
