@@ -5,6 +5,7 @@ import {
   createStackNavigator,
   createAppContainer
 } from 'react-navigation';
+import Map from './views/map';
 import AppFontLoader from './components/utils/appFontLoader';
 import Sidebar from './components/shell/sidebar';
 import Calendar from './views/calendar';
@@ -18,7 +19,8 @@ const pages = {
   Calendar: { screen: Calendar },
   Admin: { screen: Admin },
   Mess: { screen: Mess },
-  Profile: { screen: Profile }
+  Profile: { screen: Profile },
+  Map: { screen: Map }
 };
 
 const Drawer = createDrawerNavigator(pages, {
