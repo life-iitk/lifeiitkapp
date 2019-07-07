@@ -19,7 +19,6 @@ const PostModal = props => {
       transparent={false}
       visible={props.open}
       onRequestClose={props.onClose}
-      style={style.modal}
     >
       <CardItem bordered>
         <Left>
@@ -38,7 +37,7 @@ const PostModal = props => {
       <CardItem>
         {post.hash_tags.map((tag, index) => (
           <Button key={index} small rounded bordered>
-            <Text>#{tag}</Text>
+            <Text>{tag}</Text>
           </Button>
         ))}
       </CardItem>
@@ -63,8 +62,5 @@ const style = StyleSheet.create({
   dtv: {
     textTransform: 'uppercase',
     fontWeight: '100'
-  },
-  modal: {
-    backgroundColor: '#111'
   }
 });

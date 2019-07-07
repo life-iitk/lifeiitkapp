@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Picker, Card, CardItem, Content } from 'native-base';
 import MessContent from '../components/mess/messContent';
 import menuJSON from '../components/mess/menu.json';
@@ -15,7 +16,7 @@ const days = [
 ];
 
 const Mess = props => {
-  const [day, setDay] = React.useState(new Date().getDay() - 1);
+  const [day, setDay] = React.useState(moment().isoWeekday() - 1);
   const [hall, setHall] = React.useState(1);
   const menus = menuJSON['menus'];
   const numOfHalls = menus.length;
