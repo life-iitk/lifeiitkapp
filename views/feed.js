@@ -8,12 +8,12 @@ class Feed extends Component {
 
   componentDidMount = () => {
     // FETCH POSTS HERE
-    // this.getItems();
+    this.getItems();
     // OR USE HARDCODED EVENTS
-    const events = new Array(4).fill(require('../assets/fetchedPost.json'));
-    setTimeout(() => {
-      this.setState({ events: events, evLoaded: true });
-    }, 2000);
+    // const events = new Array(4).fill(require('../assets/fetchedPost.json'));
+    // setTimeout(() => {
+    //   this.setState({ events: events, evLoaded: true });
+    // }, 2000);
   };
 
   getItems() {

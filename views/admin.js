@@ -10,12 +10,12 @@ class Admin extends Component {
 
   componentDidMount = () => {
     // FETCH EVENTS HERE
-    // this.getEvents();
+    this.getEvents();
     // OR USE HARDCODED EVENTS
-    const events = new Array(3).fill(require('../assets/fetchedPost.json'));
-    setTimeout(() => {
-      this.setState({ events: events, evLoaded: true });
-    });
+    // const events = new Array(3).fill(require('../assets/fetchedPost.json'));
+    // setTimeout(() => {
+    //   this.setState({ events: events, evLoaded: true });
+    // });
   };
 
   getEvents = () => {

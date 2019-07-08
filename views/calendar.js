@@ -20,18 +20,18 @@ class Calendar extends Component {
 
   componentDidMount = () => {
     // FETCH EVENTS
-    // this.getEvents();
+    this.getEvents();
     // OR USE HARDCODED EVENTS
-    const events = new Array(2).fill(require('../assets/fetchedPost.json'));
-    setTimeout(() => {
-      this.setState({
-        filteredEvents: events,
-        allEvents: events,
-        evLoaded: true,
-        tags: this.getTags(events).map(t => ({ ...t, selected: true }))
-      });
-      this.renderDots(this.state.filteredEvents);
-    }, 2000);
+    // const events = new Array(2).fill(require('../assets/fetchedPost.json'));
+    // setTimeout(() => {
+    //   this.setState({
+    //     filteredEvents: events,
+    //     allEvents: events,
+    //     evLoaded: true,
+    //     tags: this.getTags(events).map(t => ({ ...t, selected: true }))
+    //   });
+    //   this.renderDots(this.state.filteredEvents);
+    // }, 2000);
   };
 
   getEvents = () => {
