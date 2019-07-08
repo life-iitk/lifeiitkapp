@@ -36,17 +36,17 @@ class Profile extends Component {
 
   componentDidMount = () => {
     // GET ALL COURSES LIST
-    // getAllCourses(data => this.setState({ allCourses: data }));
+    getAllCourses(data => this.setState({ allCourses: data }));
     // FETCH USER DETAILS HERE
-    // this.getProfile();
+    this.getProfile();
     // OR USE HARDCODED USER DETAILS
-    setTimeout(() => {
-      this.setState({
-        details: require('../assets/userInfo.json'),
-        allCourses: require('../assets/courses.json'),
-        loaded: true
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   this.setState({
+    //     details: require('../assets/userInfo.json'),
+    //     allCourses: require('../assets/courses.json'),
+    //     loaded: true
+    //   });
+    // }, 1000);
   };
 
   getProfile = () => {

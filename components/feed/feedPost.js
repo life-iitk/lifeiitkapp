@@ -43,7 +43,7 @@ const FeedPost = props => {
         <CardItem>
           {post.hash_tags.map((tag, index) => (
             <Button key={index} small rounded bordered>
-              <Text>#{tag}</Text>
+              <Text>{tag}</Text>
             </Button>
           ))}
         </CardItem>
