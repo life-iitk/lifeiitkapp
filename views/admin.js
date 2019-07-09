@@ -6,7 +6,12 @@ import axios from 'axios';
 import NewEvent from '../components/admin/newEvent';
 
 class Admin extends Component {
-  state = { events: [], evLoaded: false, boxOpen: false };
+  state = {
+    events: [],
+    evLoaded: false,
+    boxOpen: false,
+    tag: this.props.navigation.getParam('tag', {})
+  };
 
   componentDidMount = () => {
     // FETCH EVENTS HERE
@@ -18,11 +23,17 @@ class Admin extends Component {
     // });
   };
 
+  componentDidUpdate = prevProps => {
+    if (prevProps.navigation.getParam(tag, {}) !== this.state.tag) return;
+    this.setState({ evLoaded: true });
+    this.getEvents();
+  };
+
   getEvents = () => {
     axios
       .get(
         'http://localhost:8000/events/view/tagged_events/?tag_name=' +
-          this.props.name,
+          this.state.tag,
         { withCredentials: true }
       )
       .then(res => this.setState({ events: res.data, evLoaded: true }))
@@ -34,7 +45,7 @@ class Admin extends Component {
     axios({
       method: 'post',
       url: 'http://localhost:8000/events/create/',
-      data: data,
+      data: { ...data, tag: this.state.tag },
       withCredentials: true
     })
       .then(this.getEvents)
@@ -73,13 +84,15 @@ class Admin extends Component {
             </React.Fragment>
           )}
         </Content>
-        <Fab
-          style={{ backgroundColor: '#334393' }}
-          onPress={() => this.setState({ boxOpen: true })}
-          position="bottomRight"
-        >
-          <Icon name="ios-add" />
-        </Fab>
+        {this.state.evLoaded && (
+          <Fab
+            style={{ backgroundColor: '#334393' }}
+            onPress={() => this.setState({ boxOpen: true })}
+            position="bottomRight"
+          >
+            <Icon name="ios-add" />
+          </Fab>
+        )}
         <NewEvent
           open={this.state.boxOpen}
           onClose={() => this.setState({ boxOpen: false })}

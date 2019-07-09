@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Spinner, Content } from 'native-base';
 import TopBar from '../components/shell/topbar';
 import FeedPost from '../components/feed/feedPost';
+import axios from 'axios';
 
 class Feed extends Component {
   state = { events: [], evLoaded: false };

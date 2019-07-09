@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
+import DialogInput from 'react-native-dialog-input';
 import {
   Card,
   CardItem,
@@ -13,8 +14,11 @@ import {
   Grid,
   Row
 } from 'native-base';
+import AddTag from './addTag';
 
 const UserProfile = props => {
+  const [fbOpen, setFbOpen] = React.useState(false);
+  const [tagOpen, setTagOpen] = React.useState(false);
   return (
     <React.Fragment>
       <Card>
@@ -132,7 +136,9 @@ const UserProfile = props => {
                 <Text style={{ padding: 5 }}>Facebook</Text>
               </Left>
               <Right>
-                <Icon type="Entypo" name="edit" />
+                <Button transparent onPress={() => setFbOpen(true)}>
+                  <Icon type="Entypo" name="edit" style={{ color: '#888' }} />
+                </Button>
               </Right>
             </Row>
           </Grid>
@@ -157,7 +163,14 @@ const UserProfile = props => {
       </Card>
       <Card>
         <CardItem header>
-          <Text>Subscribed Tags</Text>
+          <Left>
+            <Text>Subscribed Tags</Text>
+          </Left>
+          <Right>
+            <Button transparent onPress={() => setTagOpen(true)}>
+              <Icon type="Entypo" name="edit" style={{ color: '#888' }} />
+            </Button>
+          </Right>
         </CardItem>
         <CardItem>
           <Body
@@ -170,13 +183,30 @@ const UserProfile = props => {
             }}
           >
             {props.data.tags.map(tag => (
-              <Button small rounded bordered style={style.button}>
+              <Button small rounded bordered key={tag} style={style.button}>
                 <Text>{tag.name}</Text>
               </Button>
             ))}
           </Body>
         </CardItem>
       </Card>
+      <DialogInput
+        isDialogVisible={fbOpen}
+        title={'Facebook Link'}
+        message={'Enter your facebook profile link below'}
+        hintInput={'Link'}
+        submitInput={props.updateLink}
+        closeDialog={() => setFbOpen(false)}
+      />
+      <AddTag
+        tags={props.data.tags}
+        // allTags={props.allTags}
+        allTags={[{ tag_id: 1, name: 'PClub', description: 'Hello' }]}
+        open={tagOpen}
+        onClose={() => setTagOpen(false)}
+        add={props.add}
+        delete={props.delete}
+      />
     </React.Fragment>
   );
 };

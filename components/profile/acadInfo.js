@@ -8,7 +8,8 @@ import {
   Right,
   Icon,
   Button,
-  Toast
+  Toast,
+  Spinner
 } from 'native-base';
 import AddCourse from './picker';
 
@@ -17,17 +18,39 @@ const AcadInfo = props => {
     !!Object.keys(props.courses).length
   );
 
-  const add = (dept, code) => {
-    const exists = props.add(dept, code);
-    if (exists)
+  const add = async (dept, code) => {
+    if (props.acads.find(c => c.code === dept + code))
       Toast.show({
         text: 'Course already added.',
         duration: 3000
       });
     else {
-      setLoaded(false);
-      props.add(dept, code);
+      try {
+        setLoaded(false);
+        await props.add(dept, code);
+        Toast.show({ text: 'Course added successfully!', duration: 3000 });
+      } catch (err) {
+        Toast.show({
+          text: 'An error occured. Try again later.',
+          duration: 3000
+        });
+      }
+      setLoaded(true);
     }
+  };
+
+  const deleteCourse = async course => {
+    try {
+      setLoaded(false);
+      await props.delete(course);
+      Toast.show({ text: 'Course removed successfully!', duration: 3000 });
+    } catch (err) {
+      Toast.show({
+        text: 'An error occured. Try again later.',
+        duration: 3000
+      });
+    }
+    setLoaded(true);
   };
 
   return (
@@ -43,14 +66,18 @@ const AcadInfo = props => {
               </Body>
             </Left>
             <Right>
-              <Button transparent onPress={() => props.delete(course)}>
+              <Button transparent onPress={() => deleteCourse(course)}>
                 <Icon type="AntDesign" name="delete" style={{ color: 'red' }} />
               </Button>
             </Right>
           </ListItem>
         ))}
       </List>
-      {loaded && <AddCourse courses={props.courses} add={add} />}
+      {!loaded ? (
+        <Spinner color="blue" />
+      ) : (
+        <AddCourse courses={props.courses} add={add} />
+      )}
     </React.Fragment>
   );
 };
