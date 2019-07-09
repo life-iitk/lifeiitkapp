@@ -121,12 +121,10 @@ const NewEvent = props => {
             onChange={e => setFormData(e, ['description'])}
           />
           <ListItem onPress={() => setDayLong(!dayLong)}>
-            {/* <Left> */}
             <CheckBox checked={dayLong} onPress={() => setDayLong(!dayLong)} />
             <Body>
               <Text>All day event</Text>
             </Body>
-            {/* </Left> */}
           </ListItem>
           <Item>
             <DatePicker
@@ -165,7 +163,7 @@ const NewEvent = props => {
           <CardItem>
             <Left style={{ flexWrap: 'wrap' }}>
               {tags.map(tag => (
-                <Button iconLeft small rounded bordered>
+                <Button iconLeft small rounded bordered key={tag}>
                   <Icon
                     type="Entypo"
                     name="cross"

@@ -67,7 +67,9 @@ const Sidebar = props => {
                     ? 'Not logged in'
                     : state.state.details.name}
                 </Text>
-                {!!state.state.details.roll && <Text note>{details.roll}</Text>}
+                {!!state.state.details.roll && (
+                  <Text note>{state.state.details.roll}</Text>
+                )}
               </Body>
             </Left>
           </CardItem>
@@ -106,7 +108,9 @@ const Sidebar = props => {
                     button
                     noBorder
                     key={tag.tag_id}
-                    onPress={() => props.navigation.navigate('Admin', tag)}
+                    onPress={() =>
+                      props.navigation.navigate('Admin', { tag: tag })
+                    }
                   >
                     <Left>
                       <Icon
