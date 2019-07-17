@@ -32,8 +32,8 @@ class Map extends React.Component {
     acadsArea: {
       map: academicMap,
       locations: locations.acadsAreaLocations,
-      height: 842,
-      width: 1280
+      height: 2588,
+      width: 2759
     }
   };
 
