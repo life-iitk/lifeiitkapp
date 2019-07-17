@@ -24,7 +24,7 @@ class Admin extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    if (prevProps.navigation.getParam(tag, {}) !== this.state.tag) return;
+    if (prevProps.navigation.getParam('tag', {}) === this.state.tag) return;
     this.setState({ evLoaded: true });
     this.getEvents();
   };

@@ -24,7 +24,7 @@ const AddTag = props => {
   const [selectedTag, setSelectedTag] = React.useState(props.allTags[0]);
 
   const addTag = async () => {
-    if (props.tags.includes(selectedTag))
+    if (props.tags.find(t => t.tag_id === selectedTag.tag_id))
       Toast.show({ text: 'Tag already subscribed.', duration: 3000 });
     else {
       try {
@@ -99,7 +99,7 @@ const AddTag = props => {
                 <Picker
                   style={{ width: 120 }}
                   selectedValue={selectedTag.name}
-                  onValueChange={setSelectedTag}
+                  onValueChange={tag => setSelectedTag(tag)}
                 >
                   {props.allTags.map(tag => (
                     <Picker.Item

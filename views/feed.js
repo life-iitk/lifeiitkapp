@@ -26,6 +26,7 @@ class Feed extends Component {
       )
       .catch(err => {
         console.log(err);
+        this.setState({ evLoaded: true, refreshing: false });
         Toast.show({
           text: 'An error occured while getting your feed. Try again later.',
           duration: 3000

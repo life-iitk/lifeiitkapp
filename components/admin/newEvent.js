@@ -29,7 +29,7 @@ const NewEvent = props => {
   const [startTime, setStartTime] = React.useState(new Date());
   const [endVis, setEndVis] = React.useState(false);
   const [endTime, setEndTime] = React.useState(new Date());
-  const [tags, setTags] = React.useState(['pclub', 'git', 'bash']);
+  const [tags, setTags] = React.useState([]);
   const [dayLong, setDayLong] = React.useState(false);
   const [hashtag, setHashtag] = React.useState('');
   const [textData, setTextData] = React.useState({
