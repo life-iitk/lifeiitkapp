@@ -14,6 +14,7 @@ import Mess from './views/mess';
 import Map from './views/map';
 import Admin from './views/admin';
 import Profile from './views/profile';
+import { AppLoading } from 'expo';
 
 const pages = {
   Feed: { screen: Feed },
@@ -45,7 +46,8 @@ const AppContainer = createAppContainer(AppNavigator);
 class App extends Component {
   state = {
     loggedIn: false,
-    details: {}
+    details: {},
+    appIsReady: false
   };
 
   login = async (username, password) => {
@@ -95,22 +97,46 @@ class App extends Component {
     else return this.login(username, password);
   };
 
+  checkIfLoggedIn = async () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('http://localhost:8000/users/profile', { withCredentials: true })
+        .then(res => {
+          this.setState({ loggedIn: true, details: res.data });
+          resolve();
+        })
+        .catch(() => {
+          this.setState({ loggedIn: false, details: {} });
+          reject();
+        });
+    });
+  };
+
   render() {
-    return (
-      <AppFontLoader>
-        <Root>
-          <Container>
-            <AppContext.Provider
-              value={{ state: { ...this.state }, log: this.handleLog }}
-            >
-              <AppContext.Consumer>
-                {state => <AppContainer />}
-              </AppContext.Consumer>
-            </AppContext.Provider>
-          </Container>
-        </Root>
-      </AppFontLoader>
-    );
+    if (!this.state.appIsReady)
+      return (
+        <AppLoading
+          startAsync={this.checkIfLoggedIn}
+          onFinish={() => this.setState({ appIsReady: true })}
+          onError={() => this.setState({ appIsReady: true })}
+        />
+      );
+    else
+      return (
+        <AppFontLoader>
+          <Root>
+            <Container>
+              <AppContext.Provider
+                value={{ state: { ...this.state }, log: this.handleLog }}
+              >
+                <AppContext.Consumer>
+                  {state => <AppContainer />}
+                </AppContext.Consumer>
+              </AppContext.Provider>
+            </Container>
+          </Root>
+        </AppFontLoader>
+      );
   }
 }
 

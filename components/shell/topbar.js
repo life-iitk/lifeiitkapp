@@ -42,7 +42,7 @@ const TopBar = props => {
                 </Button>
               </Left>
               <Body>
-                <Title>{!console.log(state) && props.pgName}</Title>
+                <Title>{props.pgName}</Title>
               </Body>
               <Right>
                 {state.state.loggedIn ? (
