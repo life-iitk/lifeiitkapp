@@ -37,18 +37,23 @@ class Calendar extends Component {
   getEvents = () => {
     this.setState({ evLoaded: false });
     const dt = this.state.selectedDate;
-    let url = 'http://localhost:8000/events/view/month/';
+    let url = 'https://lifeiitk.tk/api/events/view/month/';
     url += `?month=${dt.month() + 1}&year=${dt.year()}`;
     axios
       .get(url, { withCredentials: true })
-      .then(events => {
-        const filteredEvents = filterTags(events);
+      .then(res => {
+        const events = res.data;
+        const newTags = this.getTags(events).map(t => ({
+          ...t,
+          selected: true
+        }));
+        const filteredEvents = this.filterTags(events, newTags);
         this.renderDots(filteredEvents);
         this.setState({
           filteredEvents: filteredEvents,
           allEvents: events,
           evLoaded: true,
-          tags: this.getTags(events).map(t => ({ ...t, selected: true }))
+          tags: newTags
         });
       })
       .catch(err => console.log(err));

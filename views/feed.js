@@ -20,7 +20,7 @@ class Feed extends Component {
 
   getItems = () => {
     axios
-      .get('http://localhost:8000/events/feed', { withCredentials: true })
+      .get('https://lifeiitk.tk/api/events/feed/', { withCredentials: true })
       .then(res =>
         this.setState({ events: res.data, evLoaded: true, refreshing: false })
       )

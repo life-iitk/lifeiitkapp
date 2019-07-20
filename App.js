@@ -15,6 +15,7 @@ import Map from './views/map';
 import Admin from './views/admin';
 import Profile from './views/profile';
 import { AppLoading } from 'expo';
+import axios from 'axios';
 
 const pages = {
   Feed: { screen: Feed },
@@ -54,15 +55,18 @@ class App extends Component {
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
-        url: 'http://localhost:8000/users/auth/login/',
+        url: 'https://lifeiitk.tk/api/users/auth/login/',
         data: { username: username, password: password },
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       })
         .then(res => {
           // GET PROFILE DETAILS
           axios({
             method: 'get',
-            url: 'http://localhost:8000/users/profile',
+            url: 'https://lifeiitk.tk/api/users/profile/',
             withCredentials: true
           })
             .then(res => this.setState({ details: res.data }))
@@ -81,7 +85,7 @@ class App extends Component {
   logout = async () => {
     return new Promise(resolve => {
       axios
-        .get('http://localhost:8000/users/auth/logout/', {
+        .get('https://lifeiitk.tk/api/users/auth/logout/', {
           withCredentials: true
         })
         .then(() => {
@@ -100,12 +104,16 @@ class App extends Component {
   checkIfLoggedIn = async () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('http://localhost:8000/users/profile', { withCredentials: true })
+        .get('https://lifeiitk.tk/api/users/profile/', {
+          withCredentials: true
+        })
         .then(res => {
+          console.log('Already logged in!');
           this.setState({ loggedIn: true, details: res.data });
           resolve();
         })
         .catch(() => {
+          console.log('Not logged in!');
           this.setState({ loggedIn: false, details: {} });
           reject();
         });

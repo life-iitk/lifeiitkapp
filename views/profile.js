@@ -6,7 +6,7 @@ import AcadInfo from '../components/profile/acadInfo';
 import axios from 'axios';
 
 const getAllCourses = set => {
-  axios.get('http://localhost:8000/acads/all/').then(response => {
+  axios.get('https://lifeiitk.tk/api/acads/all/').then(response => {
     const courseData = {};
     response.data.forEach(e => {
       const i = e.code.search(/[\d]+/g);
@@ -21,7 +21,7 @@ const getAllCourses = set => {
 
 const getAllTags = set => {
   axios
-    .get('http://localhost:8000/tags/all/')
+    .get('https://lifeiitk.tk/api/tags/all/')
     .then(res => set(res.data))
     .catch(err => {
       console.log(err);
@@ -63,7 +63,7 @@ class Profile extends Component {
 
   getProfile = () => {
     axios
-      .get('http://localhost:8000/users/profile', { withCredentials: true })
+      .get('https://lifeiitk.tk/api/users/profile/', { withCredentials: true })
       .then(res => this.setState({ details: res.data, loaded: true }))
       .catch(err => console.log(err));
   };
@@ -72,7 +72,7 @@ class Profile extends Component {
     this.setState({ loaded: false });
     axios({
       method: 'put',
-      url: 'http://localhost:8000/users/',
+      url: 'https://lifeiitk.tk/api/users/',
       data: { fblink: link },
       withCredentials: true
     })
@@ -93,7 +93,7 @@ class Profile extends Component {
     return new Promise((resolve, reject) => {
       axios({
         method: 'put',
-        url: 'http://localhost:8000/users/tags/',
+        url: 'https://lifeiitk.tk/api/users/tags/',
         data: { name: tag.name },
         withCredentials: true
       })
@@ -112,7 +112,7 @@ class Profile extends Component {
     return new Promise((resolve, reject) => {
       axios({
         method: 'delete',
-        url: 'http://localhost:8000/users/tags/delete/',
+        url: 'https://lifeiitk.tk/api/users/tags/delete/',
         data: { tag_id: tag.tag_id },
         withCredentials: true
       })
@@ -132,7 +132,7 @@ class Profile extends Component {
     return new Promise((resolve, reject) => {
       axios({
         method: 'put',
-        url: 'http://localhost:8000/users/acads/',
+        url: 'https://lifeiitk.tk/api/users/acads/',
         data: { code: dept + code },
         withCredentials: true
       })
@@ -150,7 +150,7 @@ class Profile extends Component {
     return new Promise((resolve, reject) => {
       axios({
         method: 'delete',
-        url: 'http://localhost:8000/users/course/delete/',
+        url: 'https://lifeiitk.tk/api/users/course/delete/',
         data: { code: course.code },
         withCredentials: true
       })

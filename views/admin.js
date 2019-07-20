@@ -32,8 +32,9 @@ class Admin extends Component {
   getEvents = () => {
     axios
       .get(
-        'http://localhost:8000/events/view/tagged_events/?tag_name=' +
-          this.state.tag,
+        `https://lifeiitk.tk/api/events/view/tagged_events/?tag_name=${
+          this.state.tag
+        }`,
         { withCredentials: true }
       )
       .then(res => this.setState({ events: res.data, evLoaded: true }))
@@ -44,7 +45,7 @@ class Admin extends Component {
     this.setState({ boxOpen: false, evLoaded: false });
     axios({
       method: 'post',
-      url: 'http://localhost:8000/events/create/',
+      url: 'https://lifeiitk.tk/api/events/create/',
       data: { ...data, tag: this.state.tag },
       withCredentials: true
     })
@@ -57,7 +58,7 @@ class Admin extends Component {
     // Send delete request
     axios({
       method: 'delete',
-      url: 'http://localhost:8000/events/delete/',
+      url: 'https://lifeiitk.tk/api/events/delete/',
       data: { event_id: post.event_id },
       withCredentials: true
     })

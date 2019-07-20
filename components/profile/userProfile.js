@@ -200,8 +200,7 @@ const UserProfile = props => {
       />
       <AddTag
         tags={props.data.tags}
-        // allTags={props.allTags}
-        allTags={[{ tag_id: 1, name: 'PClub', description: 'Hello' }]}
+        allTags={props.allTags}
         open={tagOpen}
         onClose={() => setTagOpen(false)}
         add={props.add}
