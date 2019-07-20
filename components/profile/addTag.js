@@ -98,7 +98,7 @@ const AddTag = props => {
               <CardItem>
                 <Picker
                   style={{ width: 120 }}
-                  selectedValue={selectedTag.name}
+                  selectedValue={selectedTag}
                   onValueChange={tag => setSelectedTag(tag)}
                 >
                   {props.allTags.map(tag => (

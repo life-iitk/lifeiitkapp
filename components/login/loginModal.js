@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import {
   CardItem,
   Text,
@@ -13,7 +12,8 @@ import {
   Header,
   Body,
   Title,
-  Icon
+  Icon,
+  Root
 } from 'native-base';
 import { Modal } from 'react-native';
 
@@ -28,6 +28,7 @@ const LoginModal = props => {
       await props.login(username, password);
       props.onClose();
     } catch (err) {
+      console.log(err);
       setLoading(false);
       Toast.show({
         text: 'Incorrect username/password',
@@ -42,60 +43,52 @@ const LoginModal = props => {
       transparent={false}
       visible={props.open}
       onRequestClose={props.onClose}
-      style={style.modal}
     >
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name="arrow-back" onPress={props.onClose} />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Login</Title>
-        </Body>
-        <Right />
-      </Header>
-      <CardItem>
-        <Item regular>
-          <Input
-            placeholder="Username"
-            onChange={e => setId(e.nativeEvent.text)}
-          />
-        </Item>
-      </CardItem>
-      <CardItem>
-        <Item regular>
-          <Input
-            placeholder="Password"
-            secureTextEntry={true}
-            onChange={e => setPwd(e.nativeEvent.text)}
-          />
-        </Item>
-      </CardItem>
-      <CardItem footer>
-        <Left />
-        <Right>
-          {loading ? (
-            <Spinner color="blue" />
-          ) : (
-            <Button onPress={() => login(id, pwd)}>
-              <Text>Login</Text>
+      <Root>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name="arrow-back" onPress={props.onClose} />
             </Button>
-          )}
-        </Right>
-      </CardItem>
+          </Left>
+          <Body>
+            <Title>Login</Title>
+          </Body>
+          <Right />
+        </Header>
+        <CardItem>
+          <Item regular>
+            <Input
+              placeholder="Username"
+              autoCapitalize="none"
+              onChange={e => setId(e.nativeEvent.text)}
+            />
+          </Item>
+        </CardItem>
+        <CardItem>
+          <Item regular>
+            <Input
+              placeholder="Password"
+              secureTextEntry={true}
+              onChange={e => setPwd(e.nativeEvent.text)}
+            />
+          </Item>
+        </CardItem>
+        <CardItem footer>
+          <Left />
+          <Right>
+            {loading ? (
+              <Spinner color="blue" />
+            ) : (
+              <Button onPress={() => login(id, pwd)}>
+                <Text>Login</Text>
+              </Button>
+            )}
+          </Right>
+        </CardItem>
+      </Root>
     </Modal>
   );
 };
 
 export default LoginModal;
-
-const style = StyleSheet.create({
-  dtv: {
-    textTransform: 'uppercase',
-    fontWeight: '100'
-  },
-  modal: {
-    backgroundColor: '#111'
-  }
-});
