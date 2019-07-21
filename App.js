@@ -56,11 +56,8 @@ class App extends Component {
       axios({
         method: 'post',
         url: 'https://lifeiitk.tk/api/users/auth/login/',
-        data: { username: username, password: password },
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        data: `username=${username}&password=${password}`,
+        withCredentials: true
       })
         .then(res => {
           // GET PROFILE DETAILS
