@@ -1,15 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right
-} from 'native-base';
+import { Card, CardItem, Text, Button, Left, Body, Right } from 'native-base';
+import UserAvatar from 'react-native-user-avatar';
 import moment from 'moment';
 import PostModal from './postModal';
 
@@ -25,7 +17,8 @@ const FeedPost = props => {
       <Card>
         <CardItem bordered>
           <Left>
-            <Thumbnail source={{ uri: 'https://picsum.photos/200' }} />
+            {/* <Thumbnail source={EVENT_ICON} /> */}
+            <UserAvatar size={50} name={post.tags[0].name} color="#334393" />
             <Body>
               <Text>{post.title}</Text>
               <Text note>{post.tags[0].name}</Text>

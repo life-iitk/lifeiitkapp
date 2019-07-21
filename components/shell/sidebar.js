@@ -15,9 +15,8 @@ import { Image } from 'react-native';
 import AppContext from '../utils/appContext';
 import styles from './style';
 
-const AVATAR_PIC =
-  'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png';
-const COVER_PIC = 'http://home.iitk.ac.in/~nishankm/lib.jpg';
+const AVATAR_PIC = require('../../assets/profile-pic.png');
+const COVER_PIC = require('../../assets/cover.jpg');
 
 const pages = [
   { name: 'Feed', icon: 'logo-rss', route: 'Feed', loginReq: true },
@@ -40,7 +39,7 @@ const Sidebar = props => {
           bounces={false}
           style={{ flex: 1, backgroundColor: '#fff', top: -1 }}
         >
-          <Image source={{ uri: COVER_PIC }} style={styles.drawerCover} />
+          <Image source={COVER_PIC} style={styles.drawerCover} />
           {/* <Image square style={styles.drawerImage} source={drawerImage} /> */}
           <CardItem
             button
@@ -51,11 +50,11 @@ const Sidebar = props => {
           >
             <Left>
               <Thumbnail
-                source={{
-                  uri: state.state.details.image
-                    ? state.state.details.image
+                source={
+                  state.state.details.image
+                    ? { uri: state.state.details.image }
                     : AVATAR_PIC
-                }}
+                }
                 style={{ marginRight: 10 }}
               />
               <Body>

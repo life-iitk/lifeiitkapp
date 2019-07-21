@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Root, Toast } from 'native-base';
+import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
+import Roboto from 'native-base/Fonts/Roboto.ttf';
+import RobotoMedium from 'native-base/Fonts/Roboto_medium.ttf';
 import {
   createDrawerNavigator,
   createStackNavigator,
   createAppContainer
 } from 'react-navigation';
-import AppFontLoader from './components/utils/appFontLoader';
 import AppContext from './components/utils/appContext';
 import Sidebar from './components/shell/sidebar';
 import Feed from './views/feed';
@@ -16,6 +19,21 @@ import Admin from './views/admin';
 import Profile from './views/profile';
 import { AppLoading } from 'expo';
 import axios from 'axios';
+
+const _loadFonts = () => {
+  console.log('Called');
+  return Font.loadAsync({
+    Roboto: Roboto,
+    Roboto_medium: RobotoMedium
+  });
+};
+
+const _loadAssets = () => {
+  return Asset.loadAsync([
+    require('./assets/cover.jpg'),
+    require('./assets/profile-pic.png')
+  ]);
+};
 
 const pages = {
   Feed: { screen: Feed },
@@ -101,48 +119,39 @@ class App extends Component {
     else return this.login(username, password);
   };
 
-  checkIfLoggedIn = async () => {
-    return new Promise((resolve, reject) => {
+  checkIfLoggedIn = () => {
+    return new Promise(resolve => {
       axios
         .get('https://lifeiitk.tk/api/users/profile/', {
           withCredentials: true
         })
-        .then(res => {
-          this.setState({ loggedIn: true, details: res.data });
-          resolve();
-        })
-        .catch(() => {
-          this.setState({ loggedIn: false, details: {} });
-          reject();
-        });
+        .then(res => this.setState({ loggedIn: true, details: res.data }))
+        .catch(() => this.setState({ loggedIn: false, details: {} }))
+        .finally(() => resolve());
     });
   };
 
+  componentWillMount = () => {
+    Promise.all([this.checkIfLoggedIn(), _loadAssets(), _loadFonts()])
+      .then(() => this.setState({ appIsReady: true }))
+      .catch(err => console.log(err));
+  };
+
   render() {
-    if (!this.state.appIsReady)
+    if (!this.state.appIsReady) return <AppLoading />;
+    else {
       return (
-        <AppLoading
-          startAsync={this.checkIfLoggedIn}
-          onFinish={() => this.setState({ appIsReady: true })}
-          onError={() => this.setState({ appIsReady: true })}
-        />
+        <Root>
+          <Container>
+            <AppContext.Provider
+              value={{ state: { ...this.state }, log: this.handleLog }}
+            >
+              <AppContainer />
+            </AppContext.Provider>
+          </Container>
+        </Root>
       );
-    else
-      return (
-        <AppFontLoader>
-          <Root>
-            <Container>
-              <AppContext.Provider
-                value={{ state: { ...this.state }, log: this.handleLog }}
-              >
-                <AppContext.Consumer>
-                  {state => <AppContainer />}
-                </AppContext.Consumer>
-              </AppContext.Provider>
-            </Container>
-          </Root>
-        </AppFontLoader>
-      );
+    }
   }
 }
 
