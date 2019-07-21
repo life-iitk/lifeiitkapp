@@ -16,9 +16,11 @@ import LoginModal from '../login/loginModal';
 const TopBar = props => {
   const [open, setOpen] = React.useState(false);
 
-  const logout = async () => {
+  const logout = async state => {
     try {
-      await props.log('', '', 'logout');
+      await state.log('', '', 'logout');
+      props.navigation.navigate('Calendar');
+      Toast.show({ text: 'Successfully logged out.', duration: 3000 });
     } catch (err) {
       Toast.show({
         text: 'Logout failed. Please try again.',
@@ -46,7 +48,7 @@ const TopBar = props => {
               </Body>
               <Right>
                 {state.state.loggedIn ? (
-                  <Button transparent onPress={logout}>
+                  <Button transparent onPress={() => logout(state)}>
                     <Text>Logout</Text>
                   </Button>
                 ) : (

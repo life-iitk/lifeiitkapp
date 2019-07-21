@@ -68,7 +68,10 @@ class App extends Component {
           })
             .then(res => this.setState({ details: res.data }))
             .catch(err => {
-              Toast.show({ text: 'An error occured.', duration: 3000 });
+              Toast.show({
+                text: 'An unexpected error occured.',
+                duration: 3000
+              });
               console.log(err);
             });
           // SET STATE TO LOGGED IN
@@ -86,7 +89,7 @@ class App extends Component {
           withCredentials: true
         })
         .then(() => {
-          this.setState({ loggedIn: false });
+          this.setState({ loggedIn: false, details: {} });
           resolve();
         })
         .catch(() => reject());
@@ -105,12 +108,10 @@ class App extends Component {
           withCredentials: true
         })
         .then(res => {
-          console.log('Already logged in!');
           this.setState({ loggedIn: true, details: res.data });
           resolve();
         })
         .catch(() => {
-          console.log('Not logged in!');
           this.setState({ loggedIn: false, details: {} });
           reject();
         });

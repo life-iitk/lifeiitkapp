@@ -16,7 +16,8 @@ import {
   Header,
   Button,
   Body,
-  Content
+  Content,
+  Root
 } from 'native-base';
 
 const AddTag = props => {
@@ -60,63 +61,65 @@ const AddTag = props => {
       visible={props.open}
       onRequestClose={props.onClose}
     >
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name="arrow-back" onPress={props.onClose} />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Subscribed Tags</Title>
-        </Body>
-        <Right />
-      </Header>
-      <Content padder>
-        {loading ? (
-          <Spinner color="blue" />
-        ) : (
-          <React.Fragment>
-            <List>
-              {props.tags.map(tag => (
-                <ListItem key={tag.tag_id}>
-                  <Left>
-                    <Text>{tag.name}</Text>
-                  </Left>
-                  <Right>
-                    <Button transparent onPress={() => deleteTag(tag)}>
-                      <Icon
-                        type="AntDesign"
-                        name="delete"
-                        style={{ color: 'red' }}
+      <Root>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name="arrow-back" onPress={props.onClose} />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Subscribed Tags</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content padder>
+          {loading ? (
+            <Spinner color="blue" />
+          ) : (
+            <React.Fragment>
+              <List>
+                {props.tags.map(tag => (
+                  <ListItem key={tag.tag_id}>
+                    <Left>
+                      <Text>{tag.name}</Text>
+                    </Left>
+                    <Right>
+                      <Button transparent onPress={() => deleteTag(tag)}>
+                        <Icon
+                          type="AntDesign"
+                          name="delete"
+                          style={{ color: 'red' }}
+                        />
+                      </Button>
+                    </Right>
+                  </ListItem>
+                ))}
+              </List>
+              <Card>
+                <CardItem>
+                  <Picker
+                    style={{ width: 120 }}
+                    selectedValue={selectedTag}
+                    onValueChange={tag => setSelectedTag(tag)}
+                  >
+                    {props.allTags.map(tag => (
+                      <Picker.Item
+                        label={tag.name}
+                        value={tag}
+                        key={tag.tag_id}
                       />
-                    </Button>
-                  </Right>
-                </ListItem>
-              ))}
-            </List>
-            <Card>
-              <CardItem>
-                <Picker
-                  style={{ width: 120 }}
-                  selectedValue={selectedTag}
-                  onValueChange={tag => setSelectedTag(tag)}
-                >
-                  {props.allTags.map(tag => (
-                    <Picker.Item
-                      label={tag.name}
-                      value={tag}
-                      key={tag.tag_id}
-                    />
-                  ))}
-                </Picker>
-                <Button primary onPress={addTag}>
-                  <Icon name="ios-add" />
-                </Button>
-              </CardItem>
-            </Card>
-          </React.Fragment>
-        )}
-      </Content>
+                    ))}
+                  </Picker>
+                  <Button primary onPress={addTag}>
+                    <Icon name="ios-add" />
+                  </Button>
+                </CardItem>
+              </Card>
+            </React.Fragment>
+          )}
+        </Content>
+      </Root>
     </Modal>
   );
 };
