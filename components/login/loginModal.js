@@ -28,12 +28,12 @@ const LoginModal = props => {
       await props.login(username, password);
       props.onClose();
     } catch (err) {
-      console.log(err);
-      setLoading(false);
       Toast.show({
         text: 'Incorrect username/password',
         duration: 3000
       });
+    } finally {
+      setLoading(false);
     }
   };
 
