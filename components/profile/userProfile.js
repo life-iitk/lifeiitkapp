@@ -173,17 +173,15 @@ const UserProfile = props => {
           </Right>
         </CardItem>
         <CardItem>
-          <Body
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flex: 0,
-              flexWrap: 'wrap'
-            }}
-          >
+          <Body style={style.chipWrap}>
             {props.data.tags.map(tag => (
-              <Button small rounded bordered key={tag} style={style.button}>
+              <Button
+                small
+                rounded
+                bordered
+                key={tag.tag_id}
+                style={style.button}
+              >
                 <Text>{tag.name}</Text>
               </Button>
             ))}
@@ -213,6 +211,11 @@ const UserProfile = props => {
 export default UserProfile;
 
 const style = StyleSheet.create({
+  chipWrap: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap'
+  },
   button: {
     margin: 4
   }

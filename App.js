@@ -21,7 +21,6 @@ import { AppLoading } from 'expo';
 import axios from 'axios';
 
 const _loadFonts = () => {
-  console.log('Called');
   return Font.loadAsync({
     Roboto: Roboto,
     Roboto_medium: RobotoMedium
