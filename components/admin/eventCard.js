@@ -1,17 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
-import {
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right
-} from 'native-base';
+import { StyleSheet, Alert } from 'react-native';
+import { Card, CardItem, Text, Button, Left, Body, Right } from 'native-base';
 import moment from 'moment';
 import PostModal from '../feed/postModal';
+import UserAvatar from 'react-native-user-avatar';
 
 const EventCard = props => {
   const [postOpen, setPostOpen] = React.useState(false);
@@ -44,7 +36,8 @@ const EventCard = props => {
       <Card>
         <CardItem bordered>
           <Left>
-            <Thumbnail source={{ uri: 'https://picsum.photos/200' }} />
+            {/* <Thumbnail source={EVENT_ICON} /> */}
+            <UserAvatar size={50} name={post.tags[0].name} color="#334393" />
             <Body>
               <Text>{post.title}</Text>
               <Text note>{post.tags[0].name}</Text>

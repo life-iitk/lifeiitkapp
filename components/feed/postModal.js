@@ -1,15 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right
-} from 'native-base';
+import { CardItem, Text, Button, Left, Body, Right } from 'native-base';
 import { Modal } from 'react-native';
+import UserAvatar from 'react-native-user-avatar';
 
 const PostModal = props => {
   const post = props.post;
@@ -22,7 +15,8 @@ const PostModal = props => {
     >
       <CardItem bordered>
         <Left>
-          <Thumbnail source={{ uri: 'https://picsum.photos/200' }} />
+          {/* <Thumbnail source={EVENT_ICON} /> */}
+          <UserAvatar size={50} name={post.tags[0].name} color="#334393" />
           <Body>
             <Text>{post.title}</Text>
             <Text note>{post.tags[0].name}</Text>

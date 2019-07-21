@@ -20,6 +20,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.pclub.lifeiitk"
+    },
     "androidStatusBarColor": "#334393",
     "androidStatusBar": {
       "barStyle": "light-content",
