@@ -20,9 +20,16 @@ import {
   Root
 } from 'native-base';
 
+const sortTags = tags => {
+  const newTags = [...tags];
+  newTags.sort((a, b) => a.name.localeCompare(b.name));
+  return newTags;
+};
+
 const AddTag = props => {
+  const allTags = sortTags(props.allTags);
   const [loading, setLoading] = React.useState(props.allTags.length === 0);
-  const [selectedTag, setSelectedTag] = React.useState(props.allTags[0]);
+  const [selectedTag, setSelectedTag] = React.useState(allTags[0]);
 
   const addTag = async () => {
     if (props.tags.find(t => t.tag_id === selectedTag.tag_id))
@@ -103,7 +110,7 @@ const AddTag = props => {
                     selectedValue={selectedTag}
                     onValueChange={tag => setSelectedTag(tag)}
                   >
-                    {props.allTags.map(tag => (
+                    {allTags.map(tag => (
                       <Picker.Item
                         label={tag.name}
                         value={tag}
