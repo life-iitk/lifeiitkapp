@@ -63,7 +63,7 @@ class Calendar extends Component {
     const tags = [];
     events.forEach(ev => {
       const tag = ev.tags[0];
-      if (!tags.includes(tag)) tags.push(tag);
+      if (!tags.find(t => t.tag_id === tag.tag_id)) tags.push(tag);
     });
     return tags;
   };

@@ -16,9 +16,10 @@ import {
 const FilterModal = props => {
   const [tags, setTags] = React.useState(props.tags);
 
-  const handlePress = i => {
+  const handlePress = id => {
     const newTags = [...tags];
-    newTags[i].selected = !newTags[i].selected;
+    const tagIndex = newTags.findIndex(tag => tag.tag_id === id);
+    newTags[tagIndex].selected = !newTags[tagIndex].selected;
     setTags(newTags);
   };
 
@@ -40,11 +41,11 @@ const FilterModal = props => {
         </Body>
       </Header>
       <List>
-        {tags.map((tag, index) => (
-          <ListItem onPress={() => handlePress(index)}>
+        {tags.map(tag => (
+          <ListItem key={tag.tag_id} onPress={() => handlePress(tag.tag_id)}>
             <CheckBox
               checked={tag.selected}
-              onPress={() => handlePress(index)}
+              onPress={() => handlePress(tag.tag_id)}
             />
             <Body>
               <Text>{tag.name}</Text>
