@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { Picker, Card, CardItem, Content } from 'native-base';
 import MessContent from '../components/mess/messContent';
-import menuJSON from '../components/mess/menu.json';
 import TopBar from '../components/shell/topbar';
+import messMenus from '../assets/messMenus.json';
 
 const days = [
   'Monday',
@@ -16,10 +16,11 @@ const days = [
 ];
 
 const Mess = props => {
+  const halls = Object.keys(messMenus);
   const [day, setDay] = React.useState(moment().isoWeekday() - 1);
-  const [hall, setHall] = React.useState(1);
-  const menus = menuJSON['menus'];
-  const numOfHalls = menus.length;
+  const [hall, setHall] = React.useState(halls[0]);
+  // const menus = menuJSON['menus'];
+  // const numOfHalls = menus.length;
   return (
     <React.Fragment>
       <TopBar pgName="Mess" navigation={props.navigation} />
@@ -44,12 +45,8 @@ const Mess = props => {
                 marginRight: 10
               }}
             >
-              {new Array(numOfHalls).fill(1).map((hall, index) => (
-                <Picker.Item
-                  label={'Hall ' + (index + 1)}
-                  value={index + 1}
-                  key={index}
-                />
+              {halls.map(hall => (
+                <Picker.Item label={hall} value={hall} key={hall} />
               ))}
             </Picker>
           </CardItem>
@@ -78,7 +75,7 @@ const Mess = props => {
             </Picker>
           </CardItem>
         </Card>
-        <MessContent menu={menus[hall - 1][day]} />
+        <MessContent menu={messMenus[hall][day]} />
       </Content>
     </React.Fragment>
   );
