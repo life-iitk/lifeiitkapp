@@ -33,7 +33,7 @@ class Admin extends Component {
     axios
       .get(
         `https://lifeiitk.tk/api/events/view/tagged_events/?tag_name=${
-          this.state.tag
+          this.state.tag.name
         }`,
         { withCredentials: true }
       )
@@ -46,11 +46,14 @@ class Admin extends Component {
     axios({
       method: 'post',
       url: 'https://lifeiitk.tk/api/events/create/',
-      data: { ...data, tag: this.state.tag },
+      data: { ...data, tag_name: this.state.tag.name },
       withCredentials: true
     })
       .then(this.getEvents)
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.setState({ evLoaded: true });
+      });
   };
 
   handleDelete = post => {
@@ -62,7 +65,7 @@ class Admin extends Component {
       data: { event_id: post.event_id },
       withCredentials: true
     })
-      .then(this.getEvents())
+      .then(() => this.getEvents())
       .catch(err => console.log(err));
   };
 
