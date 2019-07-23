@@ -46,6 +46,10 @@ class Profile extends Component {
   state = { details: [], page: 0, allCourses: {}, allTags: [], loaded: false };
 
   componentDidMount = () => {
+    this.sub = this.props.navigation.addListener('didFocus', () => {
+      this.setState({ loaded: false });
+      this.getProfile();
+    });
     // GET ALL COURSES AND TAGS LIST
     getAllCourses(data => this.setState({ allCourses: data }));
     getAllTags(data => this.setState({ allTags: data }));
@@ -60,6 +64,8 @@ class Profile extends Component {
     //   });
     // }, 1000);
   };
+
+  componentWillUnmount = () => this.sub.remove();
 
   getProfile = () => {
     axios

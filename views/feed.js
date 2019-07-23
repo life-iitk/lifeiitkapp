@@ -9,6 +9,10 @@ class Feed extends Component {
   state = { events: [], evLoaded: false, refreshing: false };
 
   componentDidMount = () => {
+    this.sub = this.props.navigation.addListener('didFocus', () => {
+      this.setState({ evLoaded: false });
+      this.getItems();
+    });
     // FETCH POSTS HERE
     this.getItems();
     // OR USE HARDCODED EVENTS
@@ -16,6 +20,10 @@ class Feed extends Component {
     // setTimeout(() => {
     //   this.setState({ events: events, evLoaded: true, refreshing: false });
     // }, 2000);
+  };
+
+  componentWillUnmount = () => {
+    this.sub.remove();
   };
 
   getItems = () => {

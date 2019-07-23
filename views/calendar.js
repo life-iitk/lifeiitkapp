@@ -19,6 +19,9 @@ class Calendar extends Component {
   };
 
   componentDidMount = () => {
+    this.sub = this.props.navigation.addListener('didFocus', () => {
+      this.getEvents();
+    });
     // FETCH EVENTS
     this.getEvents();
     // OR USE HARDCODED EVENTS
@@ -33,6 +36,8 @@ class Calendar extends Component {
     //   this.renderDots(this.state.filteredEvents);
     // }, 2000);
   };
+
+  componentWillUnmount = () => this.sub.remove();
 
   getEvents = () => {
     this.setState({ evLoaded: false });
