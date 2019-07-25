@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, Root, Toast } from 'native-base';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
 import Roboto from 'native-base/Fonts/Roboto.ttf';
 import RobotoMedium from 'native-base/Fonts/Roboto_medium.ttf';
 import {
@@ -19,6 +21,17 @@ import Admin from './views/admin';
 import Profile from './views/profile';
 import { AppLoading } from 'expo';
 import axios from 'axios';
+
+const registerForNotifs = async () => {
+  const { status: existingStatus } = await Permissions.getAsync(
+    Permissions.NOTIFICATIONS
+  );
+  let finalStatus = existingStatus;
+  if (existingStatus !== 'granted') {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    finalStatus = status;
+  }
+};
 
 const _loadFonts = () => {
   return Font.loadAsync({
@@ -69,11 +82,12 @@ class App extends Component {
   };
 
   login = async (username, password) => {
+    const token = await Notifications.getExpoPushTokenAsync();
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
         url: 'https://lifeiitk.tk/api/users/auth/login/',
-        data: `username=${username}&password=${password}`,
+        data: `username=${username}&password=${password}&token=${token}`,
         withCredentials: true
       })
         .then(res => {
@@ -100,11 +114,14 @@ class App extends Component {
   };
 
   logout = async () => {
+    const token = await Notifications.getExpoPushTokenAsync();
     return new Promise(resolve => {
-      axios
-        .get('https://lifeiitk.tk/api/users/auth/logout/', {
-          withCredentials: true
-        })
+      axios({
+        method: 'GET',
+        url: 'https://lifeiitk.tk/api/users/auth/logout/',
+        withCredentials: true,
+        data: `token=${token}`
+      })
         .then(() => {
           this.setState({ loggedIn: false, details: {} });
           resolve();
@@ -131,6 +148,7 @@ class App extends Component {
   };
 
   componentWillMount = () => {
+    registerForNotifs();
     Promise.all([this.checkIfLoggedIn(), _loadAssets(), _loadFonts()])
       .then(() => this.setState({ appIsReady: true }))
       .catch(err => console.log(err));
