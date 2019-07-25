@@ -19,7 +19,7 @@ const AVATAR_PIC = require('../../assets/profile-pic.png');
 const COVER_PIC = require('../../assets/cover.jpg');
 
 const pages = [
-  { name: 'Feed', icon: 'logo-rss', route: 'Feed', loginReq: true },
+  { name: 'Feed', icon: 'logo-rss', route: 'Feed', loginReq: false },
   { name: 'Calendar', icon: 'md-calendar', route: 'Calendar', loginReq: false },
   {
     name: 'Mess',
