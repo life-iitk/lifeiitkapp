@@ -117,10 +117,10 @@ class App extends Component {
     const token = await Notifications.getExpoPushTokenAsync();
     return new Promise(resolve => {
       axios({
-        method: 'GET',
+        method: 'post',
         url: 'https://lifeiitk.tk/api/users/auth/logout/',
-        withCredentials: true,
-        data: `token=${token}`
+        data: `token=${token}`,
+        withCredentials: true
       })
         .then(() => {
           this.setState({ loggedIn: false, details: {} });
